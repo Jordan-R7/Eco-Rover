@@ -1,4 +1,4 @@
-Tiempo,Temperatura_Ambiental,Humedad,Distancia,Ruido,Luminosidad,Proximidad,Color,PM1_0,PM2_5,PM10
+Tiempo,Temperatura_Ambiental,Humedad,Ruido,Luminosidad,Proximidad,Color,PM1_0,PM2_5,PM10
 20,26.2,66.2,0.0,0.0,255,AZUL,7,9,10
 30,26.3,67.5,0.0,0.0,255,AZUL,8,10,11
 40,26.3,66.3,0.0,0.0,255,AZUL,8,10,10
