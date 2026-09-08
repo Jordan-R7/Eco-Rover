@@ -13,10 +13,10 @@ lcd = I2cLcd(i2c, I2C_ADDR, 4, 20)
 time.sleep(1)
 
 #Configuracion de wifi y nube
-WIFI_SSID = "Micjor"
-WIFI_PASSWORD = "1035423454-A"
-THINGSPEAK_WRITE_KEY = "9OKYZ886YQB5YH2A"
-THINGSPEAK_URL = "http://api.thingspeak.com/update"
+WIFI_SSID = ""
+WIFI_PASSWORD = ""
+THINGSPEAK_WRITE_KEY = ""
+THINGSPEAK_URL = ""
 
 def conectar_wifi():
     wlan = network.WLAN(network.STA_IF)
