@@ -72,7 +72,7 @@ export default function App() {
   });
 
   const [historicoFeeds, setHistoricoFeeds] = useState([]);
-  const CHANNEL_ID = "3421848"; 
+  const CHANNEL_ID = ""; 
   const URL_THINGSPEAK = `https://api.thingspeak.com/channels/${CHANNEL_ID}/feeds.json?results=15&location=true&status=true&api_key=H1R36C74DFHPATBM`;
   
   useEffect(() => {
