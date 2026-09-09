@@ -55,7 +55,7 @@ export default function GraficaTendencia({ datosHistoricos, zonaNombre }) {
               lineasVisibles.Lum ? 'bg-amber-500/10 border-amber-500/40 text-amber-400 font-bold' : 'bg-slate-900/40 border-slate-800 text-slate-600 line-through'
             }`}
           >
-            ● Brightness
+            ● Relative light intensity
           </button>
 
           <button 
@@ -64,7 +64,7 @@ export default function GraficaTendencia({ datosHistoricos, zonaNombre }) {
               lineasVisibles.Ruido ? 'bg-indigo-500/10 border-indigo-500/40 text-indigo-400 font-bold' : 'bg-slate-900/40 border-slate-800 text-slate-600 line-through'
             }`}
           >
-            ● Noise
+            ● Acoustic activity
           </button>
 
           <button 

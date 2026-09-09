@@ -203,8 +203,8 @@ export default function Historico() {
     let unidad = "µg/m³";
     if (variable === 'Temperature') unidad = "°C";
     if (variable === 'Humidity') unidad = "%";
-    if (variable === 'Noise') unidad = "dB";
-    if (variable === 'Brightness') unidad = "lux";
+    if (variable === 'Acoustic activity') unidad = "%";
+    if (variable === 'Relative light intensity') unidad = "%";
 
     return { promedio, max, min, unidad };
   }, [datosReales, variable]);
@@ -234,14 +234,14 @@ export default function Historico() {
             </div>
 
             <div className="flex bg-slate-950 p-1 rounded-xl border border-slate-800/80">
-              <button onClick={() => setTipoGrafica('Area')} className={`flex items-center gap-1.5 px-4 py-1.5 rounded-lg transition-all ${tipoGrafica === 'Area' ? 'bg-[#1e293b] text-white' : 'text-slate-500 hover:text-slate-300'}`}><Layers className="w-3.5 h-3.5" /> Área</button>
+              <button onClick={() => setTipoGrafica('Area')} className={`flex items-center gap-1.5 px-4 py-1.5 rounded-lg transition-all ${tipoGrafica === 'Area' ? 'bg-[#1e293b] text-white' : 'text-slate-500 hover:text-slate-300'}`}><Layers className="w-3.5 h-3.5" /> Area</button>
               <button onClick={() => setTipoGrafica('Columns')} className={`flex items-center gap-1.5 px-4 py-1.5 rounded-lg transition-all ${tipoGrafica === 'Columns' ? 'bg-[#1e293b] text-white' : 'text-slate-500 hover:text-slate-300'}`}><BarChart2 className="w-3.5 h-3.5" /> Columns</button>
             </div>
           </div>
         </div>
 
         <div className="flex flex-wrap gap-2 text-[11px] font-bold border-t border-slate-800/40 pt-4 select-none">
-          {['Temperature', 'Humidity', 'Noise', 'Brightness', 'PM1.0', 'PM2.5', 'PM10'].map((v) => (
+          {['Temperature', 'Humidity', 'Acoustic activity', 'Relative light intensity', 'PM1.0', 'PM2.5', 'PM10'].map((v) => (
             <button key={v} onClick={() => setVariable(v)} className={`px-3 py-1.5 rounded-full border transition-all duration-150 cursor-pointer ${variable === v ? 'bg-orange-500/10 border-orange-500/40 text-orange-400 font-bold' : 'bg-slate-950 border-slate-800/60 text-slate-500 hover:text-slate-300'}`}>● {v}</button>
           ))}
         </div>
@@ -318,8 +318,8 @@ export default function Historico() {
                     <th className="py-3 font-semibold w-1/5">Period</th>
                     <th className="py-3 font-semibold text-center">Temperature</th>
                     <th className="py-3 font-semibold text-center">Humidity</th>
-                    <th className="py-3 font-semibold text-center">Ruido</th>
-                    <th className="py-3 font-semibold text-center">Brightness</th>
+                    <th className="py-3 font-semibold text-center">Acoustic activity</th>
+                    <th className="py-3 font-semibold text-center">Relative light intensity</th>
                     <th className="py-3 font-semibold text-center">PM<sub>1.0</sub></th>
                     <th className="py-3 font-semibold text-center">PM<sub>2.5</sub></th>
                     <th className="py-3 font-semibold text-center">PM<sub>10</sub></th>

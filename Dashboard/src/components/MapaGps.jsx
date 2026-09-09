@@ -57,14 +57,14 @@ export default function MapaGps({ datos }) {
       
       {/* TARJETAS SUPERIORES */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        <CardTelemetriaGps titulo="Latitude" valor={`${posicionActual[0].toFixed(6)}°N`} subtexto="NEO-6M Sensor Y-axis" colorTexto="text-sky-400" />
-        <CardTelemetriaGps titulo="Length" valor={`${posicionActual[1].toFixed(6)}°W`} subtexto="NEO-6M X-Axis Sensor" colorTexto="text-sky-400" />
+        <CardTelemetriaGps titulo="Latitude" valor={`${posicionActual[0].toFixed(6)}°N`} subtexto="GPS NEO-6M" colorTexto="text-sky-400" />
+        <CardTelemetriaGps titulo="Longitude" valor={`${-posicionActual[1].toFixed(6)}°W`} subtexto="GPS NEO-6M" colorTexto="text-sky-400" />
         
         <div className="bg-[#0d1527] border border-slate-800/80 rounded-xl p-4 flex flex-col justify-between h-24">
           <span className="text-[10px] font-semibold text-slate-500 uppercase tracking-wider">GPS NEO-6M</span>
           <div className="flex items-center gap-2 mt-2">
             <span className={`w-2 h-2 rounded-full ${datos.latitud !== 0 ? 'bg-emerald-500 animate-pulse' : 'bg-red-500'}`}></span>
-            <span className="text-sm font-bold text-slate-200">{datos.latitud !== 0 ? 'ASSET' : 'NO SIGNAL'}</span>
+            <span className="text-sm font-bold text-slate-200">{datos.latitud !== 0 ? 'VALID FIX' : 'NO SIGNAL'}</span>
           </div>
         </div>
       </div>
@@ -88,7 +88,7 @@ export default function MapaGps({ datos }) {
         >
           {/* CAPA DE MAPA SATELITAL / OSCURO PROFESIONAL (CartoDB Dark Matter)*/}
           <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=cb1_2hwl_1_a9fcfe705ab120dd9fe691ad"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           />
 

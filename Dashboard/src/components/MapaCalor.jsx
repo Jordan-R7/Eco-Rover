@@ -13,8 +13,8 @@ const API_KEY = "H1R36C74DFHPATBM";
 const CONFIG_VARIABLES = {
   Temperature: { campo: 'Temperatura', unidad: '°C', min: 15, max: 35, icono: Thermometer },
   Humidity: { campo: 'Humedad', unidad: '%', min: 20, max: 100, icono: Droplets },
-  Noise: { campo: 'Ruido', unidad: 'dB', min: 30, max: 90, icono: Volume2 },
-  Brightness: { campo: 'Luminosidad', unidad: 'lux', min: 0, max: 1000, icono: Sun },
+  'Acoustic activity': { campo: 'Ruido', unidad: 'dB', min: 30, max: 90, icono: Volume2 },
+  'Relative light intensity': { campo: 'Luminosidad', unidad: 'lux', min: 0, max: 1000, icono: Sun },
   'PM1.0': { campo: 'PM10', unidad: 'µg/m³', min: 0, max: 50, icono: Wind },
   'PM2.5': { campo: 'PM25', unidad: 'µg/m³', min: 0, max: 75, icono: Wind },
   PM10: { campo: 'PM100', unidad: 'µg/m³', min: 0, max: 100, icono: Wind },
@@ -273,10 +273,7 @@ export default function MapaCalor() {
   // Filtro de fecha y horario el cual el usuario controla
   const [fecha, setFecha] = useState(() => new Date().toISOString().slice(0, 10));
   const [horaInicio, setHoraInicio] = useState('00:00');
-  const [horaFin, setHoraFin] = useState(() => {
-    const ahora = new Date();
-    return `${String(ahora.getHours()).padStart(2, '0')}:${String(ahora.getMinutes()).padStart(2, '0')}`;
-  });
+  const [horaFin, setHoraFin] = useState('23:59');
 
   const [datosReales, setDatosReales] = useState([]);
   const [cargando, setCargando] = useState(false);
@@ -433,7 +430,7 @@ export default function MapaCalor() {
                   const activando = !prev;
                   if (activando) {
                     setHoraInicio('06:00');
-                    setHoraFin('19:00');
+                    setHoraFin('23:59');
                   }
                   return activando;
                 });
@@ -487,7 +484,7 @@ export default function MapaCalor() {
 
         <MapContainer center={centroDefecto} zoom={16} className="w-full h-full rounded-lg" zoomControl={true}>
           <TileLayer
-            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+            url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png?key=cb1_2hwl_1_a9fcfe705ab120dd9fe691ad"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
           />
           <CapaMapaCalor puntos={puntosCalor} />

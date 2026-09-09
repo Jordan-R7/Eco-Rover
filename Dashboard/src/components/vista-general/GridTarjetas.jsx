@@ -6,9 +6,12 @@ export default function GridTarjetas({ datos }) {
   const obtenerEstadoMétrica = (valor, tipo) => {
     if (tipo === 'temp') return valor >= 27.0 ? 'ATTENTION' : 'NORMAL';
     if (tipo === 'hum') return valor >= 60.0 ? 'ATTENTION' : 'NORMAL';
-     if (tipo === 'lum') return valor >= 60.0 ? 'ATTENTION' : 'NORMAL';
+    if (tipo === 'lum') return valor >= 60.0 ? 'ATTENTION' : 'NORMAL';
     if (tipo === 'ruido') return valor >= 55.0 ? 'ATTENTION' : 'NORMAL';
+    if (tipo === 'pm100') return valor >= 45.0 ? 'ATTENTION' : 'NORMAL';
     if (tipo === 'pm25') return valor >= 12.0 ? 'ATTENTION' : 'NORMAL';
+    if (tipo === 'pm10') return valor >= 10.0 ? 'ATTENTION' : 'NORMAL';
+    
     return 'NORMAL'; // Por defecto
   };
 
@@ -36,13 +39,13 @@ export default function GridTarjetas({ datos }) {
       />
 
       <CardSensor 
-        titulo="Noise" valor={datos.ruido} unidad="dB" 
+        titulo="Acoustic activity" valor={datos.ruido} unidad="%" 
         estado={obtenerEstadoMétrica(datos.ruido, 'ruido')} obtenerEstiloBadge={obtenerEstiloBadge} 
         icono={<Volume2 className="text-indigo-400 w-4 h-4" />} maxBarra={120} idParaAnimacion="Ruido"
       />
 
       <CardSensor 
-        titulo="Brightness" valor={datos.luminosidad} unidad="lux" 
+        titulo="Relative light intensity" valor={datos.luminosidad} unidad="%" 
         estado={obtenerEstadoMétrica(datos.luminosidad, 'lum')} obtenerEstiloBadge={obtenerEstiloBadge} 
         icono={<Sun className="text-amber-400 w-4 h-4" />} maxBarra={1000} idParaAnimacion="Luminosidad"
       />
