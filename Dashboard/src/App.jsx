@@ -13,7 +13,7 @@ export default function App() {
   const [pestañaGlobal, setPestañaGlobal] = useState('sensores');
   const dashboardRef = useRef(null);
 
-  // FUNCIÓN DE EXPORTACIÓN A 300 DPI EN PNG
+  
   const exportarImagen300DPI = async () => {
     const input = dashboardRef.current;
     if (!input) return;
@@ -27,7 +27,7 @@ export default function App() {
         cacheBust: true,
       });
 
-      // 2. Cargamos la imagen en un elemento canvas temporal para inyectarle los metadatos DPI
+      // 2. Cargamos la imagen en un elemento canvas temporal para procesarla
       const img = new Image();
       img.src = dataUrl;
       img.onload = () => {
@@ -52,6 +52,41 @@ export default function App() {
       
     } catch (error) {
       console.error('Error al generar la imagen a 300 DPI:', error);
+    }
+  };
+
+  // Función para exportar el reporte en PDF ajustado a las dimensiones del dashboard
+  const exportarPDF = async () => {
+    const input = dashboardRef.current;
+    if (!input) return;
+
+    try {
+      const imgData = await htmlToImage.toPng(input, {
+        quality: 0.95,
+        backgroundColor: '#070b14',
+        cacheBust: true,
+      });
+
+      const img = new Image();
+      img.src = imgData;
+      img.onload = () => {
+        const imgWidth = img.width;
+        const imgHeight = img.height;
+
+        const pdf = new jsPDF({
+          orientation: imgWidth > imgHeight ? 'l' : 'p',
+          unit: 'mm',
+          format: [imgWidth * 0.264583, imgHeight * 0.264583]
+        });
+
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+
+        pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('EcoRover-Reporte-Investigacion.pdf');
+      };
+    } catch (error) {
+      console.error('Error al generar el PDF:', error);
     }
   };
 
@@ -134,13 +169,23 @@ export default function App() {
       />
 
       {/* BARRA SUPERIOR CON EL BOTÓN CORREGIDO */}
-      <div className="px-6 md:px-8 pt-4 flex justify-end bg-[#090f1d]/10">
+      <div className="px-6 md:px-8 pt-4 flex justify-end gap-3 bg-[#090f1d]/10">
+        {/* Botón de Alta Calidad (300 DPI) */}
         <button
           onClick={exportarImagen300DPI}
           className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-slate-950 font-bold px-4 py-2 rounded-xl shadow-lg transition-all cursor-pointer text-xs z-50"
         >
           <Download className="w-4 h-4" />
-          Descargar Pestaña en Alta Calidad (300 DPI)
+          PNG
+        </button>
+
+        {/* Botón de PDF con el mismo estilo */}
+        <button
+          onClick={exportarPDF}
+          className="flex items-center gap-2 bg-orange-500 hover:bg-orange-600 text-slate-950 font-bold px-4 py-2 rounded-xl shadow-lg transition-all cursor-pointer text-xs z-50"
+        >
+          <Download className="w-4 h-4" />
+          PDF
         </button>
       </div>
 
